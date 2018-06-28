@@ -14,6 +14,11 @@ import UIKit
 import CoreData
 import Foundation
 
+import AWSCore
+import AWSPinpoint
+import AWSAuthCore
+import AWSAuthUI
+
 /*
  * MasterViewController displays all the stored notes and allows a
  * user to create a new note, select an existing note, and swipe to delete a note.
@@ -33,20 +38,31 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Instantiate sign-in UI from the SDK library
+        self.promptLogin()
+
         managedObjectContext?.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         
         //Initialize Note contentProvider
         _noteContentProvider = NotesContentProvider()
         
-        title = "My Notes"
+        title = "Behavior Plans"
 
         // Configure the add ('+') button
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewNote(_:)))
         navigationItem.rightBarButtonItem = addButton
+        
+        // Configure the logout button
+        let logoutButton = UIBarButtonItem(barButtonSystemItem: .reply, target: self, action: #selector(logout(_:)))
+        navigationItem.leftBarButtonItem = logoutButton
+        
         if let split = splitViewController {
             let controllers = split.viewControllers
             _detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        
+        // TODO: sync down to local storage. Right now, just prints notes to console
+        _noteContentProvider?.getNotesFromDDB()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +72,46 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     func insertNewNote(_ sender: Any) {
         self.performSegue(withIdentifier: "showDetail", sender: (Any).self);
+    }
+    
+    func logout(_ sender: Any) {
+        // Declare Alert message
+        let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to log out?", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            AWSSignInManager.sharedInstance().logout(completionHandler: {_,_ in
+                self.promptLogin()
+            })
+        })
+        
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            return
+        }
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
+    func promptLogin() {
+        if !AWSSignInManager.sharedInstance().isLoggedIn {
+            AWSAuthUIViewController
+                .presentViewController(with: self.navigationController!,
+                                       configuration: nil,
+                                       completionHandler: { (provider: AWSSignInProvider, error: Error?) in
+                                        if error != nil {
+                                            print("Error occurred: \(String(describing: error))")
+                                        } else {
+                                            // Sign in successful.
+                                        }
+                })
+        }
+
     }
     
     // MARK: - Segues
@@ -115,6 +171,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             
             //Delete Note Locally
             _noteContentProvider?.delete(managedObjectContext: context, managedObj: noteObj, noteId: noteId)
+            
+            //Delete Note in DynamoDB
+            _noteContentProvider?.deleteNoteDDB(noteId: noteId!)
         }
     }
 
