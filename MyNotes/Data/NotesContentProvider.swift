@@ -40,6 +40,12 @@ public class NotesContentProvider  {
      * @return noteId the unique Note Id
      */
     func insert(noteTitle: String, noteContent: String) -> String {
+        let newNoteId = NSUUID().uuidString
+        self.insert(noteId: newNoteId, noteTitle: noteTitle, noteContent: noteContent)
+        return newNoteId
+    }
+    
+    func insert(noteId: String, noteTitle: String, noteContent: String) -> Void {
         
         // Get NSManagedObjectContext
         let managedContext = getContext()
@@ -51,11 +57,8 @@ public class NotesContentProvider  {
                                      insertInto: managedContext)
         
         // Set the Note Id
-        let newNoteId = NSUUID().uuidString
         myNote.setValue(NSDate(), forKeyPath: "creationDate")
-        print("New note being created: \(newNoteId)")
-        
-        myNote.setValue(newNoteId, forKeyPath: "noteId")
+        myNote.setValue(noteId, forKeyPath: "noteId")
         myNote.setValue(noteTitle, forKeyPath: "title")
         myNote.setValue(noteContent, forKeyPath: "content")
         
@@ -65,12 +68,9 @@ public class NotesContentProvider  {
         } catch let error as NSError {
             print("Could not save note. \(error), \(error.userInfo)")
         }
-        print("New Note Saved : \(newNoteId)")
         
         //Send AddNote analytics event
-        sendNoteEvent(noteId: newNoteId, eventType: noteEventType.AddNote.rawValue)
-
-        return newNoteId
+        sendNoteEvent(noteId: noteId, eventType: noteEventType.AddNote.rawValue)
     }
     
     /**
@@ -225,7 +225,16 @@ public class NotesContentProvider  {
         })
     }
     
-    func getNotesFromDDB() {
+    func syncNotesFromDDB(fetchedResultsController: NSFetchedResultsController<Note>) {
+        // 0) Delete all local data
+        let context = fetchedResultsController.managedObjectContext
+        if let objects = fetchedResultsController.fetchedObjects {
+            for note in objects{
+                //Delete Note Locally
+                self.delete(managedObjectContext: context, managedObj: note, noteId: note.noteId)
+            }
+        }
+        
         // 1) Configure the query looking for all the notes created by this user (userId => Cognito identityId)
         let queryExpression = AWSDynamoDBQueryExpression()
         
@@ -235,10 +244,10 @@ public class NotesContentProvider  {
             "#userId": "userId",
         ]
         queryExpression.expressionAttributeValues = [
-            ":userId": AWSIdentityManager.default().identityId
+            ":userId": AWSIdentityManager.default().identityId!
         ]
         
-        // 2) Make the query
+        // 2) Make the query and add all cloud notes to the local DB
         let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
         
         dynamoDbObjectMapper.query(Notes.self, expression: queryExpression) { (output: AWSDynamoDBPaginatedOutput?, error: Error?) in
@@ -248,8 +257,9 @@ public class NotesContentProvider  {
             if output != nil {
                 print("Found [\(output!.items.count)] notes")
                 for notes in output!.items {
-                    let noteItem = notes as? Notes
-                    print("\nNoteId: \(noteItem!._noteId!)\nTitle: \(noteItem!._title!)\nContent: \(noteItem!._content!)")
+                    if let noteItem = notes as? Notes {
+                        self.insert(noteId: noteItem._noteId!, noteTitle: noteItem._title!, noteContent: noteItem._content!)
+                    }
                 }
             }
         }
