@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7BC26D97A7BAD171AD1FB295 /* Pods_MyNotes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF434760E94AA09B6166B9FC /* Pods_MyNotes.framework */; };
-		D0FE9B5420E3FD8E000CCC0E /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = D0FE9B5320E3FD8E000CCC0E /* awsconfiguration.json */; };
 		D0FE9B5620E3FDB0000CCC0E /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE9B5520E3FDB0000CCC0E /* Notes.swift */; };
+		D0FE9B5A20ED7077000CCC0E /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = D0FE9B5920ED7077000CCC0E /* awsconfiguration.json */; };
+		D0FE9B5D20ED70C0000CCC0E /* BehaviorPlans.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE9B5B20ED70C0000CCC0E /* BehaviorPlans.swift */; };
+		D0FE9B5E20ED70C0000CCC0E /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE9B5C20ED70C0000CCC0E /* Feedback.swift */; };
 		F04BD3381F06EDD600303C0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04BD3371F06EDD600303C0E /* AppDelegate.swift */; };
 		F04BD33D1F06EDD600303C0E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04BD33C1F06EDD600303C0E /* MasterViewController.swift */; };
 		F04BD33F1F06EDD600303C0E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04BD33E1F06EDD600303C0E /* DetailViewController.swift */; };
@@ -22,8 +24,10 @@
 
 /* Begin PBXFileReference section */
 		0D5A7D6F27FF4ABCF7576632 /* Pods-MyNotes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyNotes.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyNotes/Pods-MyNotes.release.xcconfig"; sourceTree = "<group>"; };
-		D0FE9B5320E3FD8E000CCC0E /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		D0FE9B5520E3FDB0000CCC0E /* Notes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
+		D0FE9B5920ED7077000CCC0E /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		D0FE9B5B20ED70C0000CCC0E /* BehaviorPlans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviorPlans.swift; sourceTree = "<group>"; };
+		D0FE9B5C20ED70C0000CCC0E /* Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		DF434760E94AA09B6166B9FC /* Pods_MyNotes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyNotes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F04BD3341F06EDD600303C0E /* MyNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F04BD3371F06EDD600303C0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,10 +97,12 @@
 				F04BD33C1F06EDD600303C0E /* MasterViewController.swift */,
 				F04BD33E1F06EDD600303C0E /* DetailViewController.swift */,
 				D0FE9B5520E3FDB0000CCC0E /* Notes.swift */,
+				D0FE9B5B20ED70C0000CCC0E /* BehaviorPlans.swift */,
+				D0FE9B5C20ED70C0000CCC0E /* Feedback.swift */,
 				F04BD3401F06EDD600303C0E /* Main.storyboard */,
 				F04BD3451F06EDD600303C0E /* LaunchScreen.storyboard */,
 				F04BD3431F06EDD600303C0E /* Assets.xcassets */,
-				D0FE9B5320E3FD8E000CCC0E /* awsconfiguration.json */,
+				D0FE9B5920ED7077000CCC0E /* awsconfiguration.json */,
 				F04BD3481F06EDD600303C0E /* Info.plist */,
 				F08C4420201BC23E00153B38 /* Note.xcdatamodeld */,
 			);
@@ -173,7 +179,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0FE9B5420E3FD8E000CCC0E /* awsconfiguration.json in Resources */,
+				D0FE9B5A20ED7077000CCC0E /* awsconfiguration.json in Resources */,
 				F04BD3471F06EDD600303C0E /* LaunchScreen.storyboard in Resources */,
 				F04BD3441F06EDD600303C0E /* Assets.xcassets in Resources */,
 				F04BD3421F06EDD600303C0E /* Main.storyboard in Resources */,
@@ -248,6 +254,8 @@
 				F04BD33D1F06EDD600303C0E /* MasterViewController.swift in Sources */,
 				F04BD33F1F06EDD600303C0E /* DetailViewController.swift in Sources */,
 				D0FE9B5620E3FDB0000CCC0E /* Notes.swift in Sources */,
+				D0FE9B5E20ED70C0000CCC0E /* Feedback.swift in Sources */,
+				D0FE9B5D20ED70C0000CCC0E /* BehaviorPlans.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

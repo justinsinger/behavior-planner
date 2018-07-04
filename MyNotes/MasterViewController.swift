@@ -19,10 +19,7 @@ import AWSPinpoint
 import AWSAuthCore
 import AWSAuthUI
 
-/*
- * MasterViewController displays all the stored notes and allows a
- * user to create a new note, select an existing note, and swipe to delete a note.
-*/
+
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     var _detailViewController: DetailViewController? = nil
