@@ -25,6 +25,7 @@ class Feedback: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var _goal3Feedback: String?
     var _planId: String?
     var _teacher: String?
+    var _userId: String?
     
     class func dynamoDBTableName() -> String {
 
@@ -46,11 +47,12 @@ class Feedback: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
                "_id" : "id",
                "_modified" : "modified",
                "_created" : "created",
-               "_goal1Feedback" : "goal_1_feedback",
-               "_goal2Feedback" : "goal_2_feedback",
-               "_goal3Feedback" : "goal_3_feedback",
+               "_goal1Feedback" : "goal1Feedback",
+               "_goal2Feedback" : "goal2Feedback",
+               "_goal3Feedback" : "goal3Feedback",
                "_planId" : "plan_id",
                "_teacher" : "teacher",
+               "_userId" : "userId",
         ]
     }
 }

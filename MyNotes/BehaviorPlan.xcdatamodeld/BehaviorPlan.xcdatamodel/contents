@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G1212" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BehaviorFeedback" representedClassName="BehaviorFeedback" syncable="YES" codeGenerationType="class">
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="goal1Feedback" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goal2Feedback" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goal3Feedback" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="planId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teacher" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="BehaviorPlan" representedClassName="BehaviorPlan" syncable="YES" codeGenerationType="class">
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="goal1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goal2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goal3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="student" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teachers" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="noteId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="noteId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="Note" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="BehaviorPlan" positionX="-63" positionY="18" width="128" height="180"/>
+        <element name="BehaviorFeedback" positionX="-54" positionY="72" width="128" height="180"/>
+    </elements>
+</model>

@@ -23,29 +23,29 @@ import AWSAuthUI
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     var _detailViewController: DetailViewController? = nil
-    var _noteContentProvider: NotesContentProvider? = nil
+    var _behaviorPlanContentProvider: BehaviorPlanContentProvider? = nil
     
     // NSFetchedResultsController as an instance variable of table view controller
     // to manage the results of a Core Data fetch request and display data to the user.
-    var _fetchedResultsController: NSFetchedResultsController<Note>? = nil
+    var _fetchedResultsController: NSFetchedResultsController<BehaviorPlan>? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
     
-    var notes: [NSManagedObject] = []
+    var behaviorPlans: [NSManagedObject] = []
     
     // MARK: - Fetched results controller
     // Initialization of the NSFetchedResultsController.
-    var fetchedResultsController: NSFetchedResultsController<Note> {
+    var fetchedResultsController: NSFetchedResultsController<BehaviorPlan> {
         if _fetchedResultsController != nil {
             return _fetchedResultsController!
         }
         
-        let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
+        let fetchRequest: NSFetchRequest<BehaviorPlan> = BehaviorPlan.fetchRequest()
         
         // Set the batch size to a suitable number.
         fetchRequest.fetchBatchSize = 20
         
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "modified", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -75,7 +75,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         managedObjectContext?.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         
         //Initialize Note contentProvider
-        _noteContentProvider = NotesContentProvider()
+        _behaviorPlanContentProvider = BehaviorPlanContentProvider()
         
         title = "Behavior Plans"
 
@@ -96,7 +96,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
-        _noteContentProvider?.syncNotesFromDDB(fetchedResultsController: fetchedResultsController)
+        _behaviorPlanContentProvider?.syncBehaviorPlansFromDDB(fetchedResultsController: fetchedResultsController)
     }
 
     func insertNewNote(_ sender: Any) {
@@ -150,7 +150,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 
             let object = fetchedResultsController.object(at: indexPath)
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.myNote = object
+                controller.myBehaviorPlan = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -195,20 +195,27 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let context = fetchedResultsController.managedObjectContext
-            let noteObj = fetchedResultsController.object(at: indexPath)
-            let noteId = fetchedResultsController.object(at: indexPath).noteId
+            let planObj = fetchedResultsController.object(at: indexPath)
+            let planId = fetchedResultsController.object(at: indexPath).id
             
             //Delete Note Locally
-            _noteContentProvider?.delete(managedObjectContext: context, managedObj: noteObj, noteId: noteId)
+            _behaviorPlanContentProvider?.delete(managedObjectContext: context, managedObj: planObj, id: planId)
             
             //Delete Note in DynamoDB
-            _noteContentProvider?.deleteNoteDDB(noteId: noteId!)
+            _behaviorPlanContentProvider?.deleteNoteDDB(id: planId!)
         }
     }
 
-    func configureCell(_ cell: UITableViewCell, withEvent event: Note) {
-        cell.textLabel!.text = "Title: " + event.title!
-        cell.detailTextLabel?.text = event.content
+    func configureCell(_ cell: UITableViewCell, withEvent event: BehaviorPlan) {
+        if let name = event.student, !name.isEmpty {
+            cell.textLabel!.text = name + "'s Behavior Plan"
+        }
+        else {
+            cell.textLabel!.text = "Unassigned Behavior Plan"
+        }
+        if let modified = event.modified {
+            cell.detailTextLabel?.text = "Last modified: " + modified.description
+        }
     }
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -223,9 +230,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             case .delete:
                 tableView.deleteRows(at: [indexPath!], with: .fade)
             case .update:
-                configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! Note)
+                configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! BehaviorPlan)
             case .move:
-                configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! Note)
+                configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! BehaviorPlan)
                 tableView.moveRow(at: indexPath!, to: newIndexPath!)
         }
     }

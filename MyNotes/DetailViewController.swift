@@ -21,52 +21,55 @@ import CoreGraphics
 */
 class DetailViewController: UIViewController {
     
-    var noteContentProvider: NotesContentProvider? = nil
+    var behaviorPlanContentProvider: BehaviorPlanContentProvider? = nil
     
-    @IBOutlet weak var noteContent: UITextView!
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-    @IBOutlet weak var noteTitle: UITextField!
+    @IBOutlet weak var student: UITextField!
+    @IBOutlet weak var goal1: UITextView!
+    @IBOutlet weak var goal2: UITextView!
+    
     
     // Assign all the textfields to this action for keyboard collapse
     @IBAction func resignKeyboardTextField(sender: UITextField) {
         sender.resignFirstResponder()
     }
     
-    static var noteId: String?
+    static var id: String?
     
     // Timer! Property for auto-saving of a note
     var autoSaveTimer: Timer!
     
-    var notes: [NSManagedObject] = []
+    var behaviorPlans: [NSManagedObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Initialize Notes contentProvider
-        noteContentProvider = NotesContentProvider()
+        behaviorPlanContentProvider = BehaviorPlanContentProvider()
         
         // Start the auto-save timer to call autoSave() every 2 seconds
         autoSaveTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(autoSave), userInfo: nil, repeats: true)
         
         // Prepare textfields with rounded corners
-        noteTitle.layer.borderWidth = 0.5
-        noteTitle.layer.cornerRadius = 5
-        noteContent.layer.borderWidth = 0.5
-        noteContent.layer.cornerRadius = 5
+        student.layer.borderWidth = 0.5
+        student.layer.cornerRadius = 5
+        goal1.layer.borderWidth = 0.5
+        goal1.layer.cornerRadius = 5
+        goal2.layer.borderWidth = 0.5
+        goal2.layer.cornerRadius = 5
         
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 5))
-        noteTitle.leftViewMode = .always
-        noteTitle.leftView = paddingView
+        student.leftViewMode = .always
+        student.leftView = paddingView
        
         // Do any additional setup after loading the view
         configureView()
     }
     
-    var myNote: Note? {
+    var myBehaviorPlan: BehaviorPlan? {
         
         didSet {
             // Set the note Id if passed in from the MasterView
-            DetailViewController.noteId = myNote?.value(forKey: "noteId") as? String
+            DetailViewController.id = myBehaviorPlan?.value(forKey: "id") as? String
             
             // Update the view with passed in note title and content.
             configureView()
@@ -76,31 +79,34 @@ class DetailViewController: UIViewController {
     // Display the note title and content
     func configureView() {
         
-        if let title = myNote?.value(forKey: "title") as? String {
-            noteTitle?.text = title
+        if let title = myBehaviorPlan?.value(forKey: "student") as? String {
+            student?.text = title
         }
         
-        if let content = myNote?.value(forKey: "content") as? String {
-            noteContent?.text = content
+        if let content = myBehaviorPlan?.value(forKey: "goal1") as? String {
+            goal1?.text = content
+        }
+        if let content = myBehaviorPlan?.value(forKey: "goal2") as? String {
+            goal2?.text = content
         }
     }
     
     func autoSave() {
-        
-        // If this is a NEW note, set the Note Id
-        if (DetailViewController.noteId == nil) // Insert
+        if (DetailViewController.id == nil) // Insert
         {
-            let id = noteContentProvider?.insert(noteTitle: "", noteContent: "")
-            noteContentProvider?.insertNoteDDB(noteId: id!, noteTitle: "", noteContent: "")
-            DetailViewController.noteId = id
+            let id = behaviorPlanContentProvider?.insert(student: " ", goal1: " ", goal2: " ", goal3: " ")
+            _ = behaviorPlanContentProvider?.insertNoteDDB(id: id!, student: " ", goal1: " ", goal2: " ", goal3: " ")
+            DetailViewController.id = id
         }
         else // Update
         {
-            let noteId = DetailViewController.noteId
-            let noteTitle = self.noteTitle.text
-            let noteContent = self.noteContent.text
-            noteContentProvider?.update(noteId: noteId!, noteTitle: noteTitle!, noteContent: noteContent!)
-            noteContentProvider?.updateNoteDDB(noteId: noteId!, noteTitle: noteTitle!, noteContent: noteContent!)
+            let planId = DetailViewController.id
+            let studentText = self.student.text
+            let goal1Text = self.goal1.text
+            let goal2Text = self.goal2.text
+            let goal3Text = ""
+            behaviorPlanContentProvider?.update(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text)
+            behaviorPlanContentProvider?.updateNoteDDB(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text)
         }
     }
     
@@ -111,14 +117,13 @@ class DetailViewController: UIViewController {
         }
         
         // Update the note one last time unless a note was never created
-        let noteId = DetailViewController.noteId
-        if  noteId != nil {
-            noteContentProvider?.update(noteId: (noteId)!, noteTitle: self.noteTitle.text!, noteContent: self.noteContent.text!) //Core Data
+        if let planId = DetailViewController.id {
+            behaviorPlanContentProvider?.update(id: planId, student: self.student.text!, goal1: self.goal1.text!, goal2: self.goal2.text!, goal3: "")
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        DetailViewController.noteId = nil
+        DetailViewController.id = nil
     }
     
     override func didReceiveMemoryWarning() {
