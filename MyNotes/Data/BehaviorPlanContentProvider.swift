@@ -58,7 +58,7 @@ public class BehaviorPlanContentProvider  {
             try managedContext.save()
             myBehaviorPlans.append(myBehaviorPlan)
         } catch let error as NSError {
-            print("Could not save plan. \(error), \(error.userInfo)")
+            print("Could not save behavior plan. \(error), \(error.userInfo)")
         }
     }
     
@@ -67,7 +67,7 @@ public class BehaviorPlanContentProvider  {
         // Get NSManagedObjectContext
         let managedContext = getContext()
         
-        let entity = NSEntityDescription.entity(forEntityName: "Note",
+        let entity = NSEntityDescription.entity(forEntityName: "BehaviorPlan",
                                                 in: managedContext)!
         
         let myBehaviorPlan = NSManagedObject(entity: entity,
@@ -84,7 +84,7 @@ public class BehaviorPlanContentProvider  {
             try managedContext.save()
             myBehaviorPlans.append(myBehaviorPlan)
         } catch let error as NSError {
-            print("Could not save note. \(error), \(error.userInfo)")
+            print("Could not save behavior plan. \(error), \(error.userInfo)")
         }
     }
     
@@ -148,7 +148,7 @@ public class BehaviorPlanContentProvider  {
         planItem._modified = NSDate().timeIntervalSince1970 as NSNumber
         
         let updateMapperConfig = AWSDynamoDBObjectMapperConfiguration()
-        updateMapperConfig.saveBehavior = .updateSkipNullAttributes //ignore any null value attributes and does not remove in database
+        updateMapperConfig.saveBehavior = .update //ignore any null value attributes and does not remove in database
         dynamoDbObjectMapper.save(planItem, configuration: updateMapperConfig, completionHandler: {(error: Error?) -> Void in
             if let error = error {
                 print(" Amazon DynamoDB Save Error on plan update: \(error)")

@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var student: UITextField!
     @IBOutlet weak var goal1: UITextView!
     @IBOutlet weak var goal2: UITextView!
+    @IBOutlet weak var goal3: UITextView!
     
     
     // Assign all the textfields to this action for keyboard collapse
