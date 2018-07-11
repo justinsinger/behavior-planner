@@ -38,14 +38,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75m-Rg-gXe" userLabel="ScrollView">
-                                <rect key="frame" x="20" y="0.0" width="374" height="736"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75m-Rg-gXe" userLabel="ScrollView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cdg-iB-Zla" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exL-4S-fQw" userLabel="StudentLabel">
-                                                <rect key="frame" x="0.0" y="17" width="86" height="21"/>
+                                                <rect key="frame" x="16" y="17" width="86" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="I5E-fa-I1t"/>
                                                     <constraint firstAttribute="width" constant="86" id="REZ-wO-7P8"/>
@@ -55,7 +55,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RR0-Gb-PhZ">
-                                                <rect key="frame" x="0.0" y="93" width="58" height="21"/>
+                                                <rect key="frame" x="16" y="93" width="58" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="58" id="UpD-c4-Vvd"/>
                                                     <constraint firstAttribute="height" constant="21" id="gi8-6t-NxS"/>
@@ -65,7 +65,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Y3-qV-Pk5">
-                                                <rect key="frame" x="0.0" y="330" width="66" height="21"/>
+                                                <rect key="frame" x="16" y="254" width="66" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="66" id="UfY-hH-23U"/>
                                                     <constraint firstAttribute="height" constant="21" id="cKR-nc-ds7"/>
@@ -75,7 +75,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u5a-ro-Edj" userLabel="Student Text Field">
-                                                <rect key="frame" x="0.0" y="46" width="374" height="30"/>
+                                                <rect key="frame" x="20" y="46" width="378" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="V4e-kp-Nkc"/>
                                                 </constraints>
@@ -84,37 +84,37 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6qK-Vd-07T" userLabel="Goal 1 Text View">
-                                                <rect key="frame" x="0.0" y="122" width="374" height="200"/>
+                                                <rect key="frame" x="20" y="122" width="378" height="124"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="qjj-ip-fh4"/>
+                                                    <constraint firstAttribute="height" constant="124" id="qjj-ip-fh4"/>
                                                 </constraints>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="M6F-Ge-liR" userLabel="Goal 2 Text View">
-                                                <rect key="frame" x="0.0" y="359" width="374" height="200"/>
+                                                <rect key="frame" x="20" y="283" width="378" height="124"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="Ac9-2d-wtU"/>
+                                                    <constraint firstAttribute="height" constant="124" id="Ac9-2d-wtU"/>
                                                 </constraints>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BG1-a7-fbr" userLabel="Goal 3 Text View">
-                                                <rect key="frame" x="0.0" y="596" width="394" height="200"/>
+                                                <rect key="frame" x="20" y="444" width="378" height="124"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="vx0-QQ-cBZ"/>
+                                                    <constraint firstAttribute="height" constant="124" id="vx0-QQ-cBZ"/>
                                                 </constraints>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4N-At-9vV">
-                                                <rect key="frame" x="0.0" y="567" width="66" height="21"/>
+                                                <rect key="frame" x="16" y="415" width="66" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="66" id="7vE-za-wk4"/>
                                                     <constraint firstAttribute="height" constant="21" id="qBH-41-uUZ"/>
@@ -126,28 +126,29 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="BG1-a7-fbr" secondAttribute="trailing" constant="20" id="06c-zD-O8b" userLabel="trailing = Goal 3 Text View.trailing + 40"/>
-                                            <constraint firstItem="BG1-a7-fbr" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" id="1aL-BL-S6P"/>
-                                            <constraint firstItem="6qK-Vd-07T" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" id="59y-Iv-y7k"/>
+                                            <constraint firstAttribute="trailing" secondItem="BG1-a7-fbr" secondAttribute="trailing" constant="16" id="06c-zD-O8b" userLabel="trailing = Goal 3 Text View.trailing + 40"/>
+                                            <constraint firstItem="BG1-a7-fbr" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" constant="20" id="1aL-BL-S6P"/>
+                                            <constraint firstItem="6qK-Vd-07T" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" constant="20" id="59y-Iv-y7k"/>
                                             <constraint firstAttribute="height" constant="736" id="CyR-ev-UzF" userLabel="height = 1000"/>
-                                            <constraint firstItem="O4N-At-9vV" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" id="Icg-1s-nja"/>
-                                            <constraint firstItem="6Y3-qV-Pk5" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" id="Mv0-jW-RPL"/>
-                                            <constraint firstAttribute="trailing" secondItem="M6F-Ge-liR" secondAttribute="trailing" constant="40" id="NS2-Ps-aIU"/>
+                                            <constraint firstItem="O4N-At-9vV" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" constant="16" id="Icg-1s-nja"/>
+                                            <constraint firstItem="6Y3-qV-Pk5" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" constant="16" id="Mv0-jW-RPL"/>
+                                            <constraint firstAttribute="trailing" secondItem="M6F-Ge-liR" secondAttribute="trailing" constant="16" id="NS2-Ps-aIU"/>
                                             <constraint firstItem="exL-4S-fQw" firstAttribute="top" secondItem="Cdg-iB-Zla" secondAttribute="top" constant="17" id="OPR-iw-e57"/>
                                             <constraint firstItem="6Y3-qV-Pk5" firstAttribute="top" secondItem="6qK-Vd-07T" secondAttribute="bottom" constant="8" id="TIW-fw-7bG"/>
                                             <constraint firstItem="M6F-Ge-liR" firstAttribute="top" secondItem="6Y3-qV-Pk5" secondAttribute="bottom" constant="8" id="Wwh-Zi-Vr2"/>
                                             <constraint firstItem="u5a-ro-Edj" firstAttribute="top" secondItem="exL-4S-fQw" secondAttribute="bottom" constant="8" id="XGW-Q3-Hfp"/>
-                                            <constraint firstItem="u5a-ro-Edj" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" id="XpI-3q-xBE"/>
+                                            <constraint firstItem="u5a-ro-Edj" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" constant="20" id="XpI-3q-xBE"/>
                                             <constraint firstItem="6qK-Vd-07T" firstAttribute="top" secondItem="RR0-Gb-PhZ" secondAttribute="bottom" constant="8" id="aSl-0R-13M"/>
                                             <constraint firstItem="O4N-At-9vV" firstAttribute="top" secondItem="M6F-Ge-liR" secondAttribute="bottom" constant="8" id="dl8-Vv-cEK"/>
-                                            <constraint firstItem="exL-4S-fQw" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" id="edd-D5-5lz"/>
+                                            <constraint firstItem="exL-4S-fQw" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" constant="16" id="edd-D5-5lz"/>
                                             <constraint firstItem="BG1-a7-fbr" firstAttribute="top" secondItem="O4N-At-9vV" secondAttribute="bottom" constant="8" id="fTa-2I-g8b"/>
-                                            <constraint firstAttribute="trailing" secondItem="u5a-ro-Edj" secondAttribute="trailing" constant="40" id="jAg-oH-2uJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="u5a-ro-Edj" secondAttribute="trailing" constant="16" id="jAg-oH-2uJ"/>
                                             <constraint firstItem="RR0-Gb-PhZ" firstAttribute="top" secondItem="u5a-ro-Edj" secondAttribute="bottom" constant="17" id="kTy-TB-lda"/>
-                                            <constraint firstItem="M6F-Ge-liR" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" id="osP-R1-DOE"/>
-                                            <constraint firstItem="RR0-Gb-PhZ" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" id="w4B-8z-HX4"/>
-                                            <constraint firstAttribute="trailing" secondItem="6qK-Vd-07T" secondAttribute="trailing" constant="40" id="wY3-1N-32J"/>
+                                            <constraint firstItem="M6F-Ge-liR" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" constant="20" id="osP-R1-DOE"/>
+                                            <constraint firstItem="RR0-Gb-PhZ" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" constant="16" id="w4B-8z-HX4"/>
+                                            <constraint firstAttribute="trailing" secondItem="6qK-Vd-07T" secondAttribute="trailing" constant="16" id="wY3-1N-32J"/>
                                         </constraints>
+                                        <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -157,14 +158,15 @@
                                     <constraint firstAttribute="bottom" secondItem="Cdg-iB-Zla" secondAttribute="bottom" id="flm-SI-4km"/>
                                     <constraint firstItem="Cdg-iB-Zla" firstAttribute="height" secondItem="75m-Rg-gXe" secondAttribute="height" id="nyc-Dj-wyR"/>
                                 </constraints>
+                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="75m-Rg-gXe" firstAttribute="leading" secondItem="zbi-Q5-cbQ" secondAttribute="leadingMargin" id="1Ct-1i-N5v"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="75m-Rg-gXe" secondAttribute="trailing" id="JyO-Jx-CUQ"/>
+                            <constraint firstItem="75m-Rg-gXe" firstAttribute="leading" secondItem="zbi-Q5-cbQ" secondAttribute="leading" id="1Ct-1i-N5v"/>
+                            <constraint firstAttribute="trailing" secondItem="75m-Rg-gXe" secondAttribute="trailing" id="JyO-Jx-CUQ"/>
                             <constraint firstItem="75m-Rg-gXe" firstAttribute="top" secondItem="zbi-Q5-cbQ" secondAttribute="topMargin" id="gLu-kK-Jp5"/>
-                            <constraint firstItem="Cdg-iB-Zla" firstAttribute="width" secondItem="zbi-Q5-cbQ" secondAttribute="width" id="o3W-kR-7kJ"/>
+                            <constraint firstItem="Cdg-iB-Zla" firstAttribute="width" secondItem="zbi-Q5-cbQ" secondAttribute="width" id="o3W-kR-7kJ" userLabel="ContentView.width = width - 100"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -207,11 +209,11 @@
                                 <rect key="frame" x="0.0" y="22" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
-                                            <rect key="frame" x="15" y="0.0" width="384" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="384" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

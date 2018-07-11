@@ -57,6 +57,8 @@ class DetailViewController: UIViewController {
         goal1.layer.cornerRadius = 5
         goal2.layer.borderWidth = 0.5
         goal2.layer.cornerRadius = 5
+        goal3.layer.borderWidth = 0.5
+        goal3.layer.cornerRadius = 5
         
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 5))
         student.leftViewMode = .always
@@ -90,6 +92,9 @@ class DetailViewController: UIViewController {
         if let content = myBehaviorPlan?.value(forKey: "goal2") as? String {
             goal2?.text = content
         }
+        if let content = myBehaviorPlan?.value(forKey: "goal3") as? String {
+            goal3?.text = content
+        }
     }
     
     func autoSave() {
@@ -105,9 +110,9 @@ class DetailViewController: UIViewController {
             let studentText = self.student.text
             let goal1Text = self.goal1.text
             let goal2Text = self.goal2.text
-            let goal3Text = ""
-            behaviorPlanContentProvider?.update(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text)
-            behaviorPlanContentProvider?.updateNoteDDB(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text)
+            let goal3Text = self.goal3.text
+            behaviorPlanContentProvider?.update(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text!)
+            behaviorPlanContentProvider?.updateNoteDDB(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text!)
         }
     }
     
@@ -119,7 +124,8 @@ class DetailViewController: UIViewController {
         
         // Update the note one last time unless a note was never created
         if let planId = DetailViewController.id {
-            behaviorPlanContentProvider?.update(id: planId, student: self.student.text!, goal1: self.goal1.text!, goal2: self.goal2.text!, goal3: "")
+            behaviorPlanContentProvider?.update(id: planId, student: self.student.text!, goal1: self.goal1.text!, goal2: self.goal2.text!, goal3: self.goal3.text!)
+            behaviorPlanContentProvider?.updateNoteDDB(id: planId, student: self.student.text!, goal1: self.goal1.text!, goal2: self.goal2.text!, goal3: self.goal3.text!)
         }
     }
     

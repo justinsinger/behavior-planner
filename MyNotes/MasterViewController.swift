@@ -213,9 +213,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         else {
             cell.textLabel!.text = "Unassigned Behavior Plan"
         }
-        if let modified = event.modified {
-            cell.detailTextLabel?.text = "Last modified: " + modified.description
-        }
     }
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
