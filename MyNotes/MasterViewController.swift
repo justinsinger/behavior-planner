@@ -78,10 +78,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         _behaviorPlanContentProvider = BehaviorPlanContentProvider()
         
         title = "Behavior Plans"
-
-        // Configure the add ('+') button
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewNote(_:)))
-        navigationItem.rightBarButtonItem = addButton
         
         // Configure the logout button
         let logoutButton = UIBarButtonItem(barButtonSystemItem: .reply, target: self, action: #selector(logout(_:)))
@@ -97,10 +93,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
         _behaviorPlanContentProvider?.syncBehaviorPlansFromDDB(fetchedResultsController: fetchedResultsController)
-    }
-
-    func insertNewNote(_ sender: Any) {
-        self.performSegue(withIdentifier: "showDetail", sender: (Any).self);
     }
     
     func logout(_ sender: Any) {
@@ -149,7 +141,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             if let indexPath = tableView.indexPathForSelectedRow {
                 
             let object = fetchedResultsController.object(at: indexPath)
-                // let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.myBehaviorPlan = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
