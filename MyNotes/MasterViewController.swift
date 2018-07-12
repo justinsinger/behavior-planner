@@ -149,6 +149,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             if let indexPath = tableView.indexPathForSelectedRow {
                 
             let object = fetchedResultsController.object(at: indexPath)
+                // let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.myBehaviorPlan = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem

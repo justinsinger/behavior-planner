@@ -148,7 +148,7 @@ public class BehaviorPlanContentProvider  {
         planItem._modified = NSDate().timeIntervalSince1970 as NSNumber
         
         let updateMapperConfig = AWSDynamoDBObjectMapperConfiguration()
-        updateMapperConfig.saveBehavior = .update //ignore any null value attributes and does not remove in database
+        updateMapperConfig.saveBehavior = .updateSkipNullAttributes //ignore any null value attributes and does not remove in database
         dynamoDbObjectMapper.save(planItem, configuration: updateMapperConfig, completionHandler: {(error: Error?) -> Void in
             if let error = error {
                 print(" Amazon DynamoDB Save Error on plan update: \(error)")
@@ -176,15 +176,6 @@ public class BehaviorPlanContentProvider  {
     }
     
     func syncBehaviorPlansFromDDB(fetchedResultsController: NSFetchedResultsController<BehaviorPlan>) {
-        // 0) Delete all local data
-        let context = fetchedResultsController.managedObjectContext
-        if let objects = fetchedResultsController.fetchedObjects {
-            for plan in objects{
-                //Delete Locally
-                self.delete(managedObjectContext: context, managedObj: plan, id: plan.id)
-            }
-        }
-        
         // 1) Configure the query looking for all the notes created by this user (userId => Cognito identityId)
         let queryExpression = AWSDynamoDBQueryExpression()
         
@@ -206,6 +197,16 @@ public class BehaviorPlanContentProvider  {
             }
             if output != nil {
                 print("Found [\(output!.items.count)] notes")
+                
+                // Delete all local data
+                let context = fetchedResultsController.managedObjectContext
+                if let objects = fetchedResultsController.fetchedObjects {
+                    for plan in objects{
+                        //Delete Locally
+                        self.delete(managedObjectContext: context, managedObj: plan, id: plan.id)
+                    }
+                }
+                
                 for plans in output!.items {
                     if let planItem = plans as? BehaviorPlans {
                         self.insert(id: planItem._id!, student: planItem._student!, goal1: planItem._goal1!, goal2: planItem._goal2!, goal3: planItem._goal3!)
