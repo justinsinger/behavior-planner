@@ -6,6 +6,7 @@ import CoreData
 class EditViewController: UIViewController {
     
     var behaviorPlanContentProvider: BehaviorPlanContentProvider? = nil
+    weak var detailViewController: DetailViewController? = nil
     
     @IBOutlet weak var student: UITextField!
     @IBOutlet weak var goal1: UITextView!
@@ -86,16 +87,13 @@ class EditViewController: UIViewController {
             _ = behaviorPlanContentProvider?.insertNoteDDB(id: id!, student: " ", goal1: " ", goal2: " ", goal3: " ")
             EditViewController.id = id
         }
-        else // Update
-        {
-            let planId = EditViewController.id
-            let studentText = self.student.text
-            let goal1Text = self.goal1.text
-            let goal2Text = self.goal2.text
-            let goal3Text = self.goal3.text
-            behaviorPlanContentProvider?.update(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text!)
-            behaviorPlanContentProvider?.updateNoteDDB(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text!)
-        }
+        let planId = EditViewController.id
+        let studentText = self.student.text
+        let goal1Text = self.goal1.text
+        let goal2Text = self.goal2.text
+        let goal3Text = self.goal3.text
+        behaviorPlanContentProvider?.update(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text!)
+        behaviorPlanContentProvider?.updateNoteDDB(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text!)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -104,10 +102,12 @@ class EditViewController: UIViewController {
             autoSaveTimer.invalidate()
         }
         
-        // Update the note one last time unless a note was never created
-        if let planId = EditViewController.id {
-            behaviorPlanContentProvider?.update(id: planId, student: self.student.text!, goal1: self.goal1.text!, goal2: self.goal2.text!, goal3: self.goal3.text!)
-            behaviorPlanContentProvider?.updateNoteDDB(id: planId, student: self.student.text!, goal1: self.goal1.text!, goal2: self.goal2.text!, goal3: self.goal3.text!)
+        autoSave()
+        if let detail = detailViewController {
+            detail.myBehaviorPlan?.student = self.student.text!
+            detail.myBehaviorPlan?.goal1 = self.goal1.text!
+            detail.myBehaviorPlan?.goal2 = self.goal2.text!
+            detail.myBehaviorPlan?.goal3 = self.goal3.text!
         }
     }
     

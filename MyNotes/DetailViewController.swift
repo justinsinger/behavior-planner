@@ -4,44 +4,30 @@ import Foundation
 
 class DetailViewController: UIViewController {
     
-    @IBOutlet weak var student: UITextField!
+    @IBOutlet weak var prompt: UILabel!
     @IBOutlet weak var goal1: UITextView!
     @IBOutlet weak var goal2: UITextView!
     @IBOutlet weak var goal3: UITextView!
-
+    @IBOutlet weak var button1: UISegmentedControl!
+    @IBOutlet weak var button2: UISegmentedControl!
+    @IBOutlet weak var button3: UISegmentedControl!
+    
+    var myBehaviorPlan: BehaviorPlan?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Prepare textfields with rounded corners
-        student.layer.borderWidth = 0.5
-        student.layer.cornerRadius = 5
-        goal1.layer.borderWidth = 0.5
-        goal1.layer.cornerRadius = 5
-        goal2.layer.borderWidth = 0.5
-        goal2.layer.cornerRadius = 5
-        goal3.layer.borderWidth = 0.5
-        goal3.layer.cornerRadius = 5
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 5))
-        student.leftViewMode = .always
-        student.leftView = paddingView
-       
-        // Do any additional setup after loading the view
-        configureView()
     }
     
-    var myBehaviorPlan: BehaviorPlan? {
-        
-        didSet {
-            // Update the view with passed in note title and content.
-            configureView()
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        configureView()
     }
     
     // Display the note title and content
     func configureView() {
-        if let title = myBehaviorPlan?.value(forKey: "student") as? String {
-            student?.text = title
+        if let student = myBehaviorPlan?.value(forKey: "student") as? String {
+            navigationItem.title = student
+            prompt.text = "Is \(student) accomplishing these goals?"
         }
         if let content = myBehaviorPlan?.value(forKey: "goal1") as? String {
             goal1?.text = content
@@ -54,11 +40,22 @@ class DetailViewController: UIViewController {
         }
     }
     
+    @IBAction func submitAction(_ sender: Any) {
+        print("responses:")
+        print("goal 1: \(button1.selectedSegmentIndex == 0 ? "no" : "yes")")
+        print("goal 2: \(button2.selectedSegmentIndex == 0 ? "no" : "yes")")
+        print("goal 3: \(button3.selectedSegmentIndex == 0 ? "no" : "yes")")
+        if let nav = self.navigationController {
+            nav.popViewController(animated: true)
+        }
+    }
+    
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "edit" {
             let editController = segue.destination as! EditViewController
             editController.myBehaviorPlan = myBehaviorPlan
+            editController.detailViewController = self
         }
     }
     
