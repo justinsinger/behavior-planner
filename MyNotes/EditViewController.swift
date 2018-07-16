@@ -28,9 +28,6 @@ class EditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initialize Notes contentProvider
-        behaviorPlanContentProvider = BehaviorPlanContentProvider()
-        
         // Start the auto-save timer to call autoSave() every 2 seconds
         autoSaveTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(autoSave), userInfo: nil, repeats: true)
         

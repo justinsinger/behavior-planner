@@ -101,16 +101,28 @@
                                                     <segment title="Yes"/>
                                                 </segments>
                                             </segmentedControl>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajD-kq-UAE">
-                                                <rect key="frame" x="20" y="321" width="374" height="30"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="rh5-8x-RBe">
+                                                <rect key="frame" x="16" y="313" width="382" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTD-6P-0qO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="297" height="30"/>
+                                                        <state key="normal" title="View Feedback"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajD-kq-UAE">
+                                                        <rect key="frame" x="297" y="0.0" width="85" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="dLq-9R-A41"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Edit"/>
+                                                        <connections>
+                                                            <segue destination="GRN-3R-WUl" kind="show" identifier="edit" action="showDetailViewController:sender:" id="KIT-r1-k4r"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="dLq-9R-A41"/>
+                                                    <constraint firstAttribute="height" constant="30" id="pCc-ef-jT6"/>
                                                 </constraints>
-                                                <state key="normal" title="Edit"/>
-                                                <connections>
-                                                    <segue destination="GRN-3R-WUl" kind="show" identifier="edit" action="showDetailViewController:sender:" id="KIT-r1-k4r"/>
-                                                </connections>
-                                            </button>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -130,11 +142,11 @@
                                             <constraint firstAttribute="trailing" secondItem="HQd-wH-1i8" secondAttribute="trailing" constant="20" id="cUe-Cj-Fh8"/>
                                             <constraint firstItem="RR0-Gb-PhZ" firstAttribute="top" secondItem="Cdg-iB-Zla" secondAttribute="top" constant="16" id="dvn-GY-w2a"/>
                                             <constraint firstAttribute="trailing" secondItem="bBP-TQ-etq" secondAttribute="trailing" constant="20" id="hdc-hA-R6M"/>
+                                            <constraint firstItem="rh5-8x-RBe" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" constant="16" id="hy0-1j-jms"/>
                                             <constraint firstItem="bBP-TQ-etq" firstAttribute="centerY" secondItem="M6F-Ge-liR" secondAttribute="centerY" id="iBl-HY-l0B"/>
-                                            <constraint firstItem="ajD-kq-UAE" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" constant="20" id="jeo-ee-fXR"/>
-                                            <constraint firstItem="ajD-kq-UAE" firstAttribute="top" secondItem="qtC-TO-4Xv" secondAttribute="bottom" constant="42" id="m5i-Jz-kb8"/>
                                             <constraint firstItem="M6F-Ge-liR" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" constant="11" id="osP-R1-DOE"/>
-                                            <constraint firstAttribute="trailing" secondItem="ajD-kq-UAE" secondAttribute="trailing" constant="20" id="pZ0-K9-7Cx"/>
+                                            <constraint firstItem="rh5-8x-RBe" firstAttribute="top" secondItem="BG1-a7-fbr" secondAttribute="bottom" constant="12" id="th9-Bb-X6b"/>
+                                            <constraint firstAttribute="trailing" secondItem="rh5-8x-RBe" secondAttribute="trailing" constant="16" id="uFM-Eu-2ag"/>
                                             <constraint firstAttribute="trailing" secondItem="qtC-TO-4Xv" secondAttribute="trailing" constant="20" id="uvh-Ie-tXO"/>
                                             <constraint firstItem="RR0-Gb-PhZ" firstAttribute="leading" secondItem="Cdg-iB-Zla" secondAttribute="leading" constant="16" id="w4B-8z-HX4"/>
                                             <constraint firstAttribute="trailing" secondItem="6qK-Vd-07T" secondAttribute="trailing" constant="120" id="wY3-1N-32J"/>
@@ -165,7 +177,7 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
                         <barButtonItem key="rightBarButtonItem" title="Submit" id="Z21-7O-IM8">
                             <connections>
-                                <action selector="submitAction:" destination="JEX-9P-axG" id="nh2-2Z-ya5"/>
+                                <action selector="submitAction:" destination="JEX-9P-axG" id="Ox7-IE-pcb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -416,7 +428,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6S0-TO-JiA"/>
-        <segue reference="xtu-ur-uxy"/>
+        <segue reference="Tll-UG-LXB"/>
+        <segue reference="KIT-r1-k4r"/>
     </inferredMetricsTieBreakers>
 </document>
