@@ -45,9 +45,9 @@ class DetailViewController: UIViewController {
         print("goal 1: \(button1.selectedSegmentIndex == 0 ? "no" : "yes")")
         print("goal 2: \(button2.selectedSegmentIndex == 0 ? "no" : "yes")")
         print("goal 3: \(button3.selectedSegmentIndex == 0 ? "no" : "yes")")
-        if let nav = self.navigationController {
-            nav.popViewController(animated: true)
-        }
+        let splitViewController = self.view.window!.rootViewController as! UISplitViewController
+        let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
+        masterNavigationController.popViewController(animated: true)
     }
     
     // MARK: - Segues
