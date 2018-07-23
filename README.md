@@ -6,7 +6,10 @@ To run this app, you must be on a MacOS computer and have Xcode 8 or later insta
 
 1. Download this repository
 1. Open MyNotes.xcworkspace
-1. Press the run button
+1. Press the run button in Xcode
+1. Tap "Create new account"
+1. Note: use your real email address, as you will have to confirm
+1. Fill in the fields (phone number is not required) and tap "sign up"
+1. Sign in with your newly created user and start using the app
 
-You will then have to create a new user and log in to start using the app.
 
