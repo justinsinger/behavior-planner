@@ -1,11 +1,3 @@
-//
-//  FeedbackViewController.swift
-//  MyNotes
-//
-//  Created by justin on 7/22/18.
-//  Copyright © 2018 Hills, Dennis. All rights reserved.
-//
-
 import UIKit
 
 class FeedbackViewController: UITableViewController {
@@ -59,11 +51,6 @@ class FeedbackViewController: UITableViewController {
         }
         
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        _ = indexPath
-        //self.performSegue(withIdentifier: "showDetail", sender: indexPath);
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

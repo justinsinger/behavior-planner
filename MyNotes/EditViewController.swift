@@ -1,4 +1,3 @@
-
 import UIKit
 import Foundation
 import CoreData
@@ -81,7 +80,7 @@ class EditViewController: UIViewController {
         if (EditViewController.id == nil) // Insert
         {
             let id = behaviorPlanContentProvider?.insert(student: " ", goal1: " ", goal2: " ", goal3: " ")
-            _ = behaviorPlanContentProvider?.insertNoteDDB(id: id!, student: " ", goal1: " ", goal2: " ", goal3: " ")
+            _ = behaviorPlanContentProvider?.insertDDB(id: id!, student: " ", goal1: " ", goal2: " ", goal3: " ")
             EditViewController.id = id
         }
         let planId = EditViewController.id
@@ -90,7 +89,7 @@ class EditViewController: UIViewController {
         let goal2Text = self.goal2.text
         let goal3Text = self.goal3.text
         behaviorPlanContentProvider?.update(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text!)
-        behaviorPlanContentProvider?.updateNoteDDB(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text!)
+        behaviorPlanContentProvider?.updateDDB(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text!)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

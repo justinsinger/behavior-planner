@@ -1,4 +1,3 @@
-
 import Foundation
 import CoreData
 import UIKit
@@ -6,8 +5,6 @@ import AWSCore
 import AWSPinpoint
 import AWSDynamoDB
 import AWSAuthCore
-
-// The content provider for the internal Note database (Core Data)
 
 public class BehaviorPlanContentProvider  {
     
@@ -89,8 +86,8 @@ public class BehaviorPlanContentProvider  {
         }
     }
     
-    //Insert a note using Amazon DynamoDB
-    func insertNoteDDB(id: String, student: String, goal1: String, goal2: String, goal3: String) -> String {
+    //Insert a behavior plan using Amazon DynamoDB
+    func insertDDB(id: String, student: String, goal1: String, goal2: String, goal3: String) -> String {
         
         let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
         
@@ -120,8 +117,8 @@ public class BehaviorPlanContentProvider  {
         return planItem._id!
     }
     
-    //Insert a note using Amazon DynamoDB
-    func updateNoteDDB(id: String, student: String, goal1: String, goal2: String, goal3: String)  {
+    //Insert a behavior plan using Amazon DynamoDB
+    func updateDDB(id: String, student: String, goal1: String, goal2: String, goal3: String)  {
         
         let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
         
@@ -146,8 +143,8 @@ public class BehaviorPlanContentProvider  {
         })
     }
     
-    //Delete a note using Amazon DynamoDB
-    func deleteNoteDDB(id: String) {
+    //Delete a behavior plan using Amazon DynamoDB
+    func deleteDDB(id: String) {
         let dynamoDbObjectMapper = AWSDynamoDBObjectMapper.default()
         
         let itemToDelete = BehaviorPlans()
