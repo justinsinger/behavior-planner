@@ -161,6 +161,10 @@ public class BehaviorPlanContentProvider  {
     }
     
     func syncBehaviorPlansFromDDB(fetchedResultsController: NSFetchedResultsController<BehaviorPlan>) {
+        guard let identityId = AWSIdentityManager.default().identityId else {
+            return
+        }
+        
         // 1) Configure the query looking for all the notes created by this user (userId => Cognito identityId)
         let queryExpression = AWSDynamoDBQueryExpression()
         
@@ -170,7 +174,7 @@ public class BehaviorPlanContentProvider  {
             "#userId": "userId",
         ]
         queryExpression.expressionAttributeValues = [
-            ":userId": AWSIdentityManager.default().identityId!
+            ":userId": identityId
         ]
         
         // 2) Make the query and add all cloud notes to the local DB
