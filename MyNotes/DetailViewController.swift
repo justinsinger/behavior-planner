@@ -70,6 +70,7 @@ class DetailViewController: UIViewController {
             let editController = segue.destination as! EditViewController
             editController.myBehaviorPlan = myBehaviorPlan
             editController.detailViewController = self
+            editController.behaviorPlanContentProvider = behaviorPlanContentProvider
         }
         else if segue.identifier == "feedback" {
             let feedbackController = segue.destination as! FeedbackViewController

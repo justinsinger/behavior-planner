@@ -28,7 +28,7 @@ class EditViewController: UIViewController {
         super.viewDidLoad()
         
         // Start the auto-save timer to call autoSave() every 2 seconds
-        autoSaveTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(autoSave), userInfo: nil, repeats: true)
+        autoSaveTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(autoSave), userInfo: nil, repeats: true)
         
         // Prepare textfields with rounded corners
         student.layer.borderWidth = 0.5

@@ -136,6 +136,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 controller.feedbackContentProvider = _feedbackContentProvider
             }
         }
+        else if segue.identifier == "add" {
+            let controller = segue.destination as! EditViewController
+            controller.behaviorPlanContentProvider = _behaviorPlanContentProvider
+        }
     }
 
     // MARK: - table view boiler plate stuff
