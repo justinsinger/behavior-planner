@@ -24,6 +24,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     var _detailViewController: DetailViewController? = nil
     var _behaviorPlanContentProvider: BehaviorPlanContentProvider? = nil
+    var _feedbackContentProvider: FeedbackContentProvider? = nil
     
     // NSFetchedResultsController as an instance variable of table view controller
     // to manage the results of a Core Data fetch request and display data to the user.
@@ -76,6 +77,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         //Initialize Note contentProvider
         _behaviorPlanContentProvider = BehaviorPlanContentProvider()
+        _feedbackContentProvider = FeedbackContentProvider()
         
         title = "Behavior Plans"
         
@@ -91,7 +93,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        _behaviorPlanContentProvider?.syncBehaviorPlansFromDDB(fetchedResultsController: fetchedResultsController)
+        // TODO remove this
+        // _behaviorPlanContentProvider?.syncBehaviorPlansFromDDB(fetchedResultsController: fetchedResultsController)
     }
     
     func logout(_ sender: Any) {
@@ -143,6 +146,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.myBehaviorPlan = object
                 controller.behaviorPlanContentProvider = _behaviorPlanContentProvider
+                controller.feedbackContentProvider = _feedbackContentProvider
             }
         }
     }

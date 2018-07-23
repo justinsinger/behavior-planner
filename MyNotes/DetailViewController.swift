@@ -13,6 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var button3: UISegmentedControl!
     
     var behaviorPlanContentProvider: BehaviorPlanContentProvider?
+    var feedbackContentProvider: FeedbackContentProvider?
     var myBehaviorPlan: BehaviorPlan?
     
     override func viewDidLoad() {
@@ -41,11 +42,22 @@ class DetailViewController: UIViewController {
         }
     }
     
+    func save() {
+        let planId = myBehaviorPlan?.value(forKey: "id") as? String
+        let goal1Text = button1.selectedSegmentIndex == 0 ? "no" : "yes"
+        let goal2Text = button2.selectedSegmentIndex == 0 ? "no" : "yes"
+        let goal3Text = button3.selectedSegmentIndex == 0 ? "no" : "yes"
+        let newId = NSUUID().uuidString
+        _ = feedbackContentProvider?.insertFeedbackDDB(id: newId, planId: planId!, goal1: goal1Text, goal2: goal2Text, goal3: goal3Text)
+    }
+    
     @IBAction func submitAction(_ sender: Any) {
         print("responses:")
         print("goal 1: \(button1.selectedSegmentIndex == 0 ? "no" : "yes")")
         print("goal 2: \(button2.selectedSegmentIndex == 0 ? "no" : "yes")")
         print("goal 3: \(button3.selectedSegmentIndex == 0 ? "no" : "yes")")
+        
+        save()
         
         let splitViewController = self.view.window!.rootViewController as! UISplitViewController
         if let masterNavigationController = splitViewController.viewControllers[0] as? UINavigationController {
@@ -59,6 +71,12 @@ class DetailViewController: UIViewController {
             let editController = segue.destination as! EditViewController
             editController.myBehaviorPlan = myBehaviorPlan
             editController.detailViewController = self
+        }
+        else if segue.identifier == "feedback" {
+            let feedbackController = segue.destination as! FeedbackViewController
+            feedbackController.feedbackContentProvider = feedbackContentProvider
+            feedbackController.planId = myBehaviorPlan?.value(forKey: "id") as? String
+            feedbackContentProvider?.myFeedbackViewController = feedbackController
         }
     }
     

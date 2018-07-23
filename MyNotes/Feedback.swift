@@ -17,13 +17,13 @@ import AWSDynamoDB
 
 class Feedback: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
+    var _planId: String?
     var _id: String?
-    var _modified: NSNumber?
     var _created: NSNumber?
     var _goal1Feedback: String?
     var _goal2Feedback: String?
     var _goal3Feedback: String?
-    var _planId: String?
+    var _modified: NSNumber?
     var _teacher: String?
     var _userId: String?
     
@@ -34,23 +34,23 @@ class Feedback: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
     class func hashKeyAttribute() -> String {
 
-        return "_id"
+        return "_planId"
     }
     
     class func rangeKeyAttribute() -> String {
 
-        return "_modified"
+        return "_id"
     }
     
     override class func jsonKeyPathsByPropertyKey() -> [AnyHashable: Any] {
         return [
+               "_planId" : "planId",
                "_id" : "id",
-               "_modified" : "modified",
                "_created" : "created",
                "_goal1Feedback" : "goal1Feedback",
                "_goal2Feedback" : "goal2Feedback",
                "_goal3Feedback" : "goal3Feedback",
-               "_planId" : "plan_id",
+               "_modified" : "modified",
                "_teacher" : "teacher",
                "_userId" : "userId",
         ]
