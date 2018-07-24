@@ -27,6 +27,9 @@ class EditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(done))
+        self.navigationItem.rightBarButtonItem = doneButton
+        
         // Start the auto-save timer to call autoSave() every 2 seconds
         autoSaveTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(autoSave), userInfo: nil, repeats: true)
         
@@ -92,7 +95,7 @@ class EditViewController: UIViewController {
         behaviorPlanContentProvider?.updateDDB(id: planId!, student: studentText!, goal1: goal1Text!, goal2: goal2Text!, goal3: goal3Text!)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    func prepareToDissapear() {
         // Stop the auto-save timer
         if autoSaveTimer != nil {
             autoSaveTimer.invalidate()
@@ -105,6 +108,20 @@ class EditViewController: UIViewController {
             detail.myBehaviorPlan?.goal2 = self.goal2.text!
             detail.myBehaviorPlan?.goal3 = self.goal3.text!
         }
+    }
+    
+    func done() {
+        prepareToDissapear()
+        
+        let splitViewController = self.view.window!.rootViewController as! UISplitViewController
+        if let masterNavigationController = splitViewController.viewControllers[0] as? UINavigationController {
+            masterNavigationController.popViewController(animated: true)
+        }
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        prepareToDissapear()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
